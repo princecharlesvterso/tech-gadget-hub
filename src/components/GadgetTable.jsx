@@ -64,42 +64,32 @@ function GadgetTable({
         <table className={styles.table}>
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => (
-                  <th key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </th>
-                ))}
-              </tr>
-            ))}
+            <tr key={headerGroup.id}>
+            {headerGroup.headers.map((header) => (
+            <th key={header.id}> 
+            {header.isPlaceholder
+            ? null
+            : flexRender(
+            header.column.columnDef.header,
+            header.getContext()
+          )}
+            </th>
+          ))}
+            </tr>
+          ))}
           </thead>
 
           <tbody>
             {table.getRowModel().rows.length === 0 ? (
               <tr>
-                <td
-                  colSpan={columns.length}
-                  className={styles.emptyState}
-                >
-                  No gadgets registered.
-                </td>
+                <td colSpan={columns.length} className={styles.emptyState}>No gadgets registered.</td>
               </tr>
             ) : (
               table.getRowModel().rows.map((row) => (
-                <tr
-                  key={row.id}
-                  onClick={() =>
-                    onSelect(row.original.id)
-                  }
-                  className={
-                    selectedId === row.original.id
-                      ? styles.selectedRow
-                      : ""
+                <tr key={row.id} onClick={() => onSelect(row.original.id) }
+                  className={selectedId === row.original.id
+                    ? styles.selectedRow
+                    : ""
                   }
                 >
                   {row.getVisibleCells().map((cell) => (
@@ -118,31 +108,15 @@ function GadgetTable({
       </div>
 
       <div className={styles.pagination}>
-        <div className={styles.pageInfo}>
-          Page{" "}
-          <strong>
-            {table.getState().pagination.pageIndex + 1}
-          </strong>{" "}
-          of{" "}
-          <strong>
-            {Math.max(table.getPageCount(), 1)}
-          </strong>
+        
+        <div className={styles.pageInfo}>Page{" "}
+          <strong>{table.getState().pagination.pageIndex + 1}</strong>{" "}of{" "}<strong>{Math.max(table.getPageCount(), 1)}</strong>
         </div>
 
         <div className={styles.paginationButtons}>
-          <button
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </button>
+          <button onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>Previous</button>
 
-          <button
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </button>
+          <button onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>Next</button>
         </div>
       </div>
     </>
