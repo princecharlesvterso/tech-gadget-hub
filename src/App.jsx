@@ -68,10 +68,9 @@ function App() {
         <p>View and select registered gadgets.</p>
     </div>
 
-      <button className={styles.addButton}onClick={() => setShowForm(true)}>
-            + Register Gadget
-          </button>
-        </div>
+      <button className={styles.addButton}onClick={() => setShowForm(true)}>+ Register Gadget</button>
+      
+      </div>
 
         <GadgetTable gadgets={filteredGadgets} selectedId={selectedId} onSelect={setSelectedId}/>
         
